@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-evenly align-items-center">
+    <h3>請輸入你的支出</h3>
+</div>
+{{>message}}
+<div class="mb-2">*必填欄位</div>
+<form action="/records/new" method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">名稱*</label>
+        <input type="text" name="name" value="{{name}}" class="form-control" id="name">
+    </div>
+    <div class="mb-3">
+        <label for="date" class="form-label">日期*</label>
+        <input type="date" name="date" value="{{date}}" class="form-control" id="date">
+    </div>
+    <div class="mb-3">
+        <label for="categoryId" class="form-label">類別*</label>
+        <select id="categoryId" name="categoryId" value="{{categoryId}}" class="form-select">
+            <option disabled hidden selected></option>
+            <option>家居物業</option>
+            <option>交通出行</option>
+            <option>休閒娛樂</option>
+            <option>餐飲食品</option>
+            <option>其他</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="amount" class="form-label">金額*</label>
+        <input type="number" name="amount" value="{{amount}}" class="form-control" id="amount">
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary btn-lg">新增支出</button>
+    </div>
+</form>

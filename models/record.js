@@ -7,21 +7,20 @@ const recordSchema = new Schema({
     },
     date: {
         type: Date,
-        default: Date.now,
         required: true
     },
     amount: {
         type: Number,
         required: true
     },
-    userId: {
-        type: Schema.Types.ObjectID,
-        ref: 'User',
-        index: true,
-        required: true
-    },
+    // userId: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+    //     index: true,
+    //     required: true
+    // },
     categoryId: {
-        type: Schema.Types.ObjectID,
+        type: Schema.Types.ObjectId,
         ref: 'Category',
         index: true,
         required: true
