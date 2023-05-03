@@ -34,7 +34,7 @@ const checkSignUpData = [
         .trim()
         .notEmpty().withMessage('請填入Password。')
         .bail() // 如果上一個條件不合格，就停止接下來的驗證。
-        .isLength({ min: 2 }).withMessage('Password至少6個字。'), // 測試時先用最少2個字
+        .isLength({ min: 6 }).withMessage('Password至少6個字。'),
     body('confirmPassword')
         .trim()
         .notEmpty().withMessage('請填入Confirm Password。')
