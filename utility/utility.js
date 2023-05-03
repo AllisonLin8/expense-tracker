@@ -1,8 +1,9 @@
 const formatDate = (records) => {
     records.forEach(record => {
         const date = new Date(record.date)
-        record.date = date.getFullYear() + '/' + (date.getMonth() + 1).toString().padStart(2, '0') + '/' + date.getDate().toString().padStart(2, '0')
+        record.date = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
     })
+    return records
 }
 const totalAmount = (records) => {
     let totalAmount = 0

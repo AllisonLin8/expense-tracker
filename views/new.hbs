@@ -16,11 +16,19 @@
         <label for="categoryId" class="form-label">類別*</label>
         <select id="categoryId" name="categoryId" value="{{categoryId}}" class="form-select">
             <option disabled hidden selected></option>
+            {{#if categories}}
+            {{#each categories}}
+            <option {{#ifEquals this.name ../categoryId}}{{/ifEquals}}>
+                {{this.name}}
+            </option>
+            {{/each}}
+            {{else}}
             <option>家居物業</option>
             <option>交通出行</option>
             <option>休閒娛樂</option>
             <option>餐飲食品</option>
             <option>其他</option>
+            {{/if}}
         </select>
     </div>
     <div class="mb-3">
