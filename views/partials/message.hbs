@@ -1,3 +1,4 @@
+{{!-- validator --}}
 {{#if errors}}
 {{#each errors}}
 <div class="alert alert-light alert-dismissible fade show" role="alert">
@@ -6,3 +7,34 @@
 </div>
 {{/each}}
 {{/if}}
+
+{{!-- connect-flash --}}
+{{#if flashErrors}}
+{{#each flashErrors}}
+<div class="alert alert-light alert-dismissible fade show" role="alert">
+    {{{this.message}}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/each}}
+{{/if}}
+
+{{#if success_msg}}
+<div class="alert alert-light alert-dismissible fade show" role="alert">
+    {{{success_msg}}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+
+{{#if warning_msg}}
+<div class="alert alert-light alert-dismissible fade show" role="alert">
+    {{{warning_msg}}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}}
+
+{{!-- {{#if flashErrors}}
+<div class="alert alert-light alert-dismissible fade show" role="alert">
+    {{{flashErrors}}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{{/if}} --}}

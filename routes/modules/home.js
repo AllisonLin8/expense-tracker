@@ -6,8 +6,9 @@ const { formatDate, totalAmount } = require('../../utility/utility')
 
 // 瀏覽所有的支出紀錄
 router.get('/', async (req, res) => {
+    const userId = req.user._id
     try {
-        const records = await Record.find().populate({ path: 'categoryId', select: 'icon' }).lean()
+        const records = await Record.find({ userId }).populate({ path: 'categoryId', select: 'icon' }).lean()
         formatDate(records)// 轉換日期格式
         res.render('index', { records, totalAmount: totalAmount(records) })
     } catch (err) {
@@ -17,10 +18,11 @@ router.get('/', async (req, res) => {
 
 // 瀏覽特定的支出紀錄
 router.get('/search', async (req, res) => {
+    const userId = req.user._id
     const sortBy = req.query.sortBy
     try {
         const categoryId = await Category.find({ name: sortBy }).lean()
-        const records = await Record.find({ categoryId }).populate({ path: 'categoryId', select: 'icon' }).lean()
+        const records = await Record.find({ categoryId, userId }).populate({ path: 'categoryId', select: 'icon' }).lean()
         formatDate(records)// 轉換日期格式
         res.render('index', { records, totalAmount: totalAmount(records) })
     } catch (err) {
