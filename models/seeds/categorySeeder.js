@@ -8,6 +8,10 @@ const SEED_CATEGORY = require('../../utility/categoryIconList')
 db.once('open', async () => {
     try {
         for (const property in SEED_CATEGORY) {
+            const categoryExists = await Category.find({ name: property }).lean()
+            if (categoryExists.length) {
+                continue
+            }
             await Category.create({
                 name: property,
                 icon: SEED_CATEGORY[property],
