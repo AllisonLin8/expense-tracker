@@ -78,10 +78,9 @@ router.put('/:recordId', checkRecord, async (req, res) => {
             const categoryList = await Category.find({}).lean() // 找出所有category
             const categoryExists = categoryList.find(category => { return categoryId === category.name })
             if (categoryExists) { // 如果categoryExists存在，使用categoryExists的_id儲存修改後的record
-                const updatedRecord = await Record.findOneAndUpdate(
+                await Record.findOneAndUpdate(
                     { _id: req.params.recordId, userId },
-                    { $set: { name, date, categoryId: categoryExists._id, amount: amount, userId } },
-                    { new: true }
+                    { name, date, categoryId: categoryExists._id, amount },
                 )
                 res.redirect('/')
             } else { // 如果categoryExists不存在，先新建category並取得_id，將_id覆蓋到修改後的record，再儲存updatedRecord
@@ -91,8 +90,7 @@ router.put('/:recordId', checkRecord, async (req, res) => {
                 })
                 await Record.findOneAndUpdate(
                     { _id: req.params.recordId, userId },
-                    { $set: { name, date, categoryId: category._id, amount, userId } },
-                    { new: true }
+                    { name, date, categoryId: category._id, amount },
                 )
                 res.redirect('/')
             }
